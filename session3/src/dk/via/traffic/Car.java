@@ -4,8 +4,7 @@ public class Car {
     private boolean isRunning;
     private final String license;
 
-    public Car(String license) {
-        this.license = license;
+    public Car(String license) {        this.license = license;
         this.isRunning = false;
     }
 
