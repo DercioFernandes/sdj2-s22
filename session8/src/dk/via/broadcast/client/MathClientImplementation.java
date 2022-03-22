@@ -9,7 +9,7 @@ import java.beans.PropertyChangeSupport;
 import java.io.*;
 import java.net.Socket;
 
-public class MathClientImplementation implements MathClient {
+public class   MathClientImplementation implements MathClient {
     private static final String EXIT_JSON = """
     {"operator": "exit"}
     """;
@@ -37,8 +37,12 @@ public class MathClientImplementation implements MathClient {
         String json = gson.toJson(expression);
         output.println(json);
         output.flush();
-
-        Result result = null;
+        try {
+            wait();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        Result result = gson.fromJson(latestResponse, Result.class);
         return result.getValue();
     }
 
@@ -48,8 +52,12 @@ public class MathClientImplementation implements MathClient {
         String json = gson.toJson(expression);
         output.println(json);
         output.flush();
-
-        Result result = null;
+        try {
+            wait();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        Result result = gson.fromJson(latestResponse, Result.class);
         return result.getValue();
     }
 

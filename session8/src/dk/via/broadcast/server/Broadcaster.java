@@ -12,13 +12,6 @@ public class Broadcaster {
         sockets = new ArrayList<>();
     }
 
-    private void send(Socket socket, String message) throws IOException {
-        PrintWriter writer = new PrintWriter(socket.getOutputStream());
-        writer.println("broadcast");
-        writer.println(message);
-        writer.flush();
-    }
-
     public synchronized void addRecipient(Socket socket) {
         sockets.add(socket);
     }
@@ -29,7 +22,10 @@ public class Broadcaster {
 
     public synchronized void broadcast(String message) throws IOException {
         for(Socket socket: sockets) {
-            send(socket, message);
+            PrintWriter writer = new PrintWriter(socket.getOutputStream());
+            writer.println("broadcast");
+            writer.println(message);
+            writer.flush();
         }
     }
 }

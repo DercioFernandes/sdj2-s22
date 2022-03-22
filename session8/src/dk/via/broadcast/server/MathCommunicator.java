@@ -19,6 +19,7 @@ public class MathCommunicator implements Runnable {
     }
 
     private void communicate() throws IOException {
+        broadcaster.addRecipient(socket);
         try {
             InputStream inputStream = socket.getInputStream();
             OutputStream outputStream = socket.getOutputStream();
@@ -38,6 +39,7 @@ public class MathCommunicator implements Runnable {
                         String json = gson.toJson(r);
                         output.println(json);
                         output.flush();
+                        broadcaster.broadcast(json);
                         break;
                     }
                     case "-": {
@@ -47,6 +49,7 @@ public class MathCommunicator implements Runnable {
                         String json = gson.toJson(r);
                         output.println(json);
                         output.flush();
+                        broadcaster.broadcast(json);
                         break;
                     }
                     case "exit":
@@ -55,6 +58,7 @@ public class MathCommunicator implements Runnable {
                 }
             }
         } finally {
+            broadcaster.removeRecipient(socket);
             socket.close();
         }
     }
