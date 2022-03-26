@@ -11,9 +11,11 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+//Start here
 public class CalculatorApplication extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException {
+        //Open the client
         MathClient client = new MathClientImplementation("localhost", 8888);
         Model model = new ModelManager(client);
         ViewModelFactory viewModelFactory = new ViewModelFactory(model);

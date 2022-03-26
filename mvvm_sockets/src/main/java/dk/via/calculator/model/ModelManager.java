@@ -13,11 +13,13 @@ public class ModelManager implements Model {
     public ModelManager(MathClient client) {
         this.client = client;
         this.support = new PropertyChangeSupport(this);
+        //Observer in other words, it will notify a change to all of the ones binded to it.
         client.addPropertyChangeListener(evt -> {
             support.firePropertyChange(evt);
         });
     }
 
+    //Adapter
     @Override
     public double add(double a, double b) throws IOException {
         return client.plus(a, b);

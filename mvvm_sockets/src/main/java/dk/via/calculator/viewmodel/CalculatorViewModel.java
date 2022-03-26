@@ -33,6 +33,7 @@ public class CalculatorViewModel implements PropertyChangeListener {
         double a = firstOperand.get();
         double b = secondOperand.get();
         try {
+            //ViewModel will call to Model which will call to Client
             double sum = model.add(a, b);
             result.set(String.format("%f + %f = %f", a, b, sum));
             error.set("");
