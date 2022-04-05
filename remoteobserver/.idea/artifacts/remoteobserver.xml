@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="remoteobserver">
+    <output-path>$PROJECT_DIR$/out/artifacts/remoteobserver</output-path>
+    <root id="archive" name="remoteobserver.jar">
+      <element id="module-output" name="session11" />
+    </root>
+  </artifact>
+</component>
